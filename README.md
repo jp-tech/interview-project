@@ -33,6 +33,9 @@ To change the frequency at which the background task runs, navigate to `./src/ma
 - H2 database is used for stored events but it would be better to use a tool that is designed to handle large quantities of data streaming (google pub/sub or kafka etc)
 #### Make use of concurrency to spread up processing
 - The sending of emails runs one after another. In scenarios when a creator has millions of subscribers, this would lean to very slow processing of the emails. To improve this, emails could be sent concurrently
+#### Implement retry mechanism for task failures
+- When tasks are in the error state, they need to be retried again at a later point
+- When a task hits the max number of failures, it should be put in the dead letter queue and manually investigated
 #### Additional forms of testing
 - More unit tests on the components to validate their behaviour
 - Integration tests on pages and large components to ensure the application works as expected
