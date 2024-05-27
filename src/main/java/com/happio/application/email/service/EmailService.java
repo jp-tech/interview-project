@@ -1,5 +1,6 @@
 package com.happio.application.email.service;
 
+import com.happio.application.email.model.EmailTypes;
 import com.happio.application.email.model.SentEmail;
 import com.happio.application.email.repository.EmailRepository;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class EmailService {
 
     public void sendSubscriberEmails(List<String> emails){
         for(String email : emails){
-            sendEmailToUser(email, FROM_EMAIL, "NEW_CONTENT");
+            sendEmailToUser(email, FROM_EMAIL, EmailTypes.NEW_CONTENT.toString());
         }
     }
 
@@ -34,7 +35,7 @@ public class EmailService {
 
     public SentEmail getSentEmail(String email_id){
         return emailRepository.getSentEmail(Integer.parseInt(email_id)).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Email not found")
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Email not found") // I should collect all error messages in an error messages enum for consistency and ease of uses
         );
     }
 }

@@ -12,7 +12,7 @@ public class EmailController{
 
     private EmailService emailService;
 
-    public EmailController (EmailService emailRepository) { this.emailService = emailService; }
+    public EmailController (EmailService emailService) { this.emailService = emailService; }
 
     @GetMapping("/{emailId}")
     public ResponseEntity<SentEmail> getEmailById(@PathVariable String postId){
