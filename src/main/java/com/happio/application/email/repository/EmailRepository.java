@@ -15,7 +15,7 @@ public class EmailRepository {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public EmailRepository (NamedParameterJdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
+    public EmailRepository(NamedParameterJdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
 
     public Optional<SentEmail> getSentEmail(int emailId){
         String query = "SELECT id, sent_to, sent_from, email_type FROM SentEmail WHERE id = (:emailId);";

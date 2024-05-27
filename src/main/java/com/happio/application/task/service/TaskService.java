@@ -64,7 +64,9 @@ public class TaskService {
     }
 
     private void sendEmailsToSubscribers(String post){
-        // Get the subscribers to send to
+        // Get the subscribers to send to, this should come from user datastore or api
+        // I've hard coded this but this should this should come from user datastore or api
+        // Using ths post.creatr_id, we should get the list of all his subscribers
         String[] emails = {"oijo@gmail.com", "dnoin@icloud.com"};
         emailService.sendSubscriberEmails(Arrays.asList(emails));
     }

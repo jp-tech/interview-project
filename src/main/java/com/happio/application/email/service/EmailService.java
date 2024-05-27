@@ -22,7 +22,11 @@ public class EmailService {
     }
 
     public void sendSubscriberEmails(List<String> emails){
+        // This functionality is blocking and runs one after another in sequence which can affect performance and speed of the application
+        // It would be better to run these computations concurrently using multithreading or coroutines (like in kotlin)
+        // to run these independent of one another
         for(String email : emails){
+            // in a real life scenario, this sending of emails could fail. The errors should be captured in the data store
             sendEmailToUser(email, FROM_EMAIL, EmailTypes.NEW_CONTENT.toString());
         }
     }
