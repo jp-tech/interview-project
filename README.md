@@ -28,7 +28,7 @@ To change the frequency at which the background task runs, navigate to `./src/ma
 ## What I would do to make production ready
 #### Send events to client instead of polling
 - Use of server sent events to client instead of polling the queue to eliminate the need to make calls
-- Currently, both services live in the same application. Ideally, this would be separated into two self container services
+- Currently, both services live in the same application for simplicity but ideally, they would be separated into two self-contained microservices
 #### Use an event driven ledger instead of a database to store events
 - H2 database is used for stored events but it would be better to use a tool that is designed to handle large quantities of data streaming (google pub/sub or kafka etc)
 #### Make use of concurrency to spread up processing
