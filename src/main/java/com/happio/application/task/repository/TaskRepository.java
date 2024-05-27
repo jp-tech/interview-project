@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.Date;
 
 @Repository
 public class TaskRepository {
@@ -56,21 +57,24 @@ public class TaskRepository {
     }
 
     public void setErrorStatus(int taskId) {
-        jdbcTemplate.update(
-                getUpdateQuery(EmailTaskStatus.ERROR),
-                new MapSqlParameterSource().addValue("id", taskId)
-        );
+        jdbcTemplate.update(getUpdateQuery(EmailTaskStatus.ERROR), getSqlParameters(taskId));
     }
 
     public void setSuccessStatus(int taskId) {
-        jdbcTemplate.update(
-                getUpdateQuery(EmailTaskStatus.COMPLETED),
-                new MapSqlParameterSource().addValue("id", taskId)
-        );
+        jdbcTemplate.update(getUpdateQuery(EmailTaskStatus.COMPLETED), getSqlParameters(taskId));
+    }
+
+    private MapSqlParameterSource getSqlParameters(int taskId){
+        MapSqlParameterSource sqlParameters = new MapSqlParameterSource();
+        sqlParameters.addValue("id", taskId);
+        sqlParameters.addValue("updated_on", new Date());
+        return sqlParameters;
     }
 
     private String getUpdateQuery(EmailTaskStatus newStatus){
-        return "UPDATE EmailTasks SET status='"+newStatus+"' WHERE id=(:id) AND status='"+EmailTaskStatus.IN_PROGRESS+"'";
+        String query = "UPDATE EmailTasks SET updated_on=(:updated_on), status='"+newStatus;
+        query += "' WHERE id=(:id) AND status='"+EmailTaskStatus.IN_PROGRESS+"'";
+        return query;
     }
 
     private EmailTask mapObject(ResultSet resultSet) throws SQLException {
