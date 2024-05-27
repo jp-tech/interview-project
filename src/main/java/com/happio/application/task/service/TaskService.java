@@ -30,7 +30,7 @@ public class TaskService {
     }
 
     public void createSendEmailNotificationsTask(int postId)  {
-        createTask(postId);
+        taskRepository.create(postId);
     }
 
     public String getPost(int postId){
@@ -65,14 +65,11 @@ public class TaskService {
 
     private void sendEmailsToSubscribers(String post){
         // Get the subscribers to send to, this should come from user datastore or api
-        // I've hard coded this but this should this should come from user datastore or api
-        // Using ths post.creatr_id, we should get the list of all his subscribers
+        // I've hard coded this but this should come from user datastore or api
+        // Using ths post.channel_id, we should get the list of all his subscribers. e.g:
+        // String[] emails = getChanelSubscribers(post.channel_id)
         String[] emails = {"oijo@gmail.com", "dnoin@icloud.com"};
         emailService.sendSubscriberEmails(Arrays.asList(emails));
-    }
-
-    private void createTask(int postId){
-        taskRepository.create(postId);
     }
 
     private void handleErrorProcessingTask(int taskId, Exception ex){

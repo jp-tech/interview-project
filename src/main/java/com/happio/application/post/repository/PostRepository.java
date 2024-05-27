@@ -1,7 +1,6 @@
 package com.happio.application.post.repository;
 
 import com.happio.application.post.model.Post;
-import com.happio.application.task.model.EmailTask;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
