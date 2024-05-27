@@ -1,0 +1,24 @@
+CREATE TABLE IF NOT EXISTS `Posts` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `channel_id` INT NOT NULL,
+    `creator_id` INT NOT NULL,
+    `content` VARCHAR(255) NOT NULL,
+    `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS `EmailTasks` (
+    `id` int AUTO_INCREMENT PRIMARY KEY,
+    `status` VARCHAR(255) NOT NULL DEFAULT 'AWAITING',
+    `post_id` INT NOT NULL,
+    `attempts` SMALLINT NOT NULL DEFAULT 0,
+    `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_on` TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS `SentEmails` (
+    `id` int AUTO_INCREMENT PRIMARY KEY,
+    `sent_to` VARCHAR(255) NOT NULL,
+    `sent_from` VARCHAR(255) NOT NULL,
+    `email_type` VARCHAR(255) NOT NULL,
+    `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
