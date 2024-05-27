@@ -57,6 +57,4 @@ public class PostRepository {
                 resultSet.getString("content")
         );
     }
-
-
 }
