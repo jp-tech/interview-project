@@ -32,7 +32,7 @@ public class PostService {
     }
 
     public Post getPost(String postId) {
-        return postRepository.getPostById(postId).orElseThrow(() ->
+        return postRepository.getPostById(Integer.parseInt(postId)).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found")
         );
     }

@@ -36,7 +36,7 @@ public class PostRepository {
         return jdbcTemplate.update(query, parameters);
     }
 
-    public Optional<Post> getPostById(String postId) {
+    public Optional<Post> getPostById(int postId) {
         String query = "SELECT id, channel_id, creator_id, content FROM Posts WHERE id = (:postId);";
         MapSqlParameterSource parameters = new MapSqlParameterSource().addValue("postId", postId);
         Stream<Post> databaseResponse = jdbcTemplate.queryForStream(

@@ -33,10 +33,6 @@ public class TaskService {
         createTask(postId);
     }
 
-    public List<EmailTask> getEmailTasks() {
-        return taskRepository.getAndUpdateAwaitingTasks();
-    }
-
     public String getPost(int postId){
         String url = BASEURL + "/post/" + postId;
         ResponseEntity<String> r = new RestTemplate().getForEntity(url, String.class);
@@ -53,7 +49,7 @@ public class TaskService {
             return;
         }
 
-        logger.info("Email tasks to process: " + tasks.size());
+        logger.info("Email tasks to process: {}", tasks.size());
         for (EmailTask task : tasks) {
             int taskId = task.getId();
             try {
@@ -78,12 +74,12 @@ public class TaskService {
     }
 
     private void handleErrorProcessingTask(int taskId, Exception ex){
-        logger.error("Error performing email task" + ex.toString());
+        logger.error("Error performing email task: {}", ex.toString());
         taskRepository.setErrorStatus(taskId);
     }
 
     private void handleSuccessfulTaskProcessing(int taskId){
-        logger.info("Successfully ran task performing email task " + taskId);
+        logger.info("Successfully ran task performing email task {}", taskId);
         taskRepository.setSuccessStatus(taskId);
     }
 }

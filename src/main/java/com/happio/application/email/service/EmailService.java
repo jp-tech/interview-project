@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class EmailService {
 
-    // For ease, this is hardocoded in the class but this should not exist here.
+    // For ease, this is hardcoded in the class but this should not exist here.
     private String FROM_EMAIL = "hello@support.com";
 
     private EmailRepository emailRepository;
