@@ -15,9 +15,9 @@ public class EmailController{
     public EmailController (EmailService emailService) { this.emailService = emailService; }
 
     @GetMapping("/{emailId}")
-    public ResponseEntity<SentEmail> getEmailById(@PathVariable String postId){
+    public ResponseEntity<SentEmail> getEmailById(@PathVariable String emailId){
         // As above, authentication and authorization needed
-        return ResponseEntity.status(HttpStatus.OK).body(emailService.getSentEmail(postId));
+        return ResponseEntity.status(HttpStatus.OK).body(emailService.getSentEmail(emailId));
     }
 
 }

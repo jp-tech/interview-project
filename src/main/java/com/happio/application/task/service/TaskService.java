@@ -53,7 +53,7 @@ public class TaskService {
         for (EmailTask task : tasks) {
             int taskId = task.getId();
             try {
-                String s = getPost(taskId);
+                String s = getPost(task.getPostId());
                 sendEmailsToSubscribers(s);
                 handleSuccessfulTaskProcessing(taskId);
             } catch (Exception ex) {
