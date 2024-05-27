@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `Posts` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `id` INT PRIMARY KEY,
     `channel_id` INT NOT NULL,
     `creator_id` INT NOT NULL,
     `content` VARCHAR(255) NOT NULL,

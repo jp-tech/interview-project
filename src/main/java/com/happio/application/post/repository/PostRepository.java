@@ -23,9 +23,9 @@ public class PostRepository {
     public int create(Post post) {
         String query = """
               INSERT INTO Posts
-              (channel_id, content, creator_id)
+              (id, channel_id, content, creator_id)
               VALUES
-              (:channel_id, :content, :creator_id)
+              (:id, :channel_id, :content, :creator_id)
         """;
         MapSqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("id", post.getId())
