@@ -10,7 +10,10 @@ Source code found in `application/src`. Instructions to run
 
 Open [http://localhost:8081/](http://localhost:8081/) to ensure application is running.
 
-#### 
+#### Runs the tests
+`./gradlew test`
+
+#### Directory structure
 - `CreatePost` REST service is contained in the `post` package
 - Background `SendEmail` service tasks ran in the `scheduling` package
 - Conceptual high level designs found in the diagram folder in the top level directory
