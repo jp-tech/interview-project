@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest()
 @AutoConfigureMockMvc
 class PostControllerTest {
 
@@ -22,7 +22,8 @@ class PostControllerTest {
     @Test
     public void shouldThrowClientError() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/post"))
+                        .post("/post")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().is4xxClientError());
     }
 
